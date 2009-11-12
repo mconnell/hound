@@ -8,7 +8,9 @@ describe Account do
   describe "validations" do
     describe "subdomain attribute" do
       it "should be present for all accounts" do
-        Factory.build(:account, :subdomain => nil).should_not be_valid
+        account = Factory.build(:account, :subdomain => nil)
+        account.should_not be_valid
+        account.should have_at_least(1).errors_on(:subdomain)
       end
 
       it "should be valid for a subdomain 'foo'" do
@@ -16,9 +18,17 @@ describe Account do
       end
 
       it "should not be valid for a subdomain that begins or ends with a hyphen" do
-        Factory.build(:account, :subdomain => '-a1-').should_not be_valid
-        Factory.build(:account, :subdomain => '-dot').should_not be_valid
-        Factory.build(:account, :subdomain => 'dot-').should_not be_valid
+        account_one = Factory.build(:account, :subdomain => '-a1-')
+        account_one.should_not be_valid
+        account_one.should have_at_least(1).errors_on(:subdomain)
+
+        account_two = Factory.build(:account, :subdomain => '-dot')
+        account_two.should_not be_valid
+        account_two.should have_at_least(1).errors_on(:subdomain)
+
+        account_three = Factory.build(:account, :subdomain => 'dot-')
+        account_three.should_not be_valid
+        account_three.should have_at_least(1).errors_on(:subdomain)
       end
 
       it "should be valid for a subdomain 'xe'" do
@@ -26,13 +36,23 @@ describe Account do
       end
 
       it "should not be valid for a subdomain 'a-'" do
-        Factory.build(:account, :subdomain => 'a-').should_not be_valid
+        account = Factory.build(:account, :subdomain => 'a-')
+        account.should_not be_valid
+        account.should have_at_least(1).errors_on(:subdomain)
       end
 
       it "should not be valid for a subdomain with a single character ('a', '1', '-')" do
-        Factory.build(:account, :subdomain => 'a').should_not be_valid
-        Factory.build(:account, :subdomain => '1').should_not be_valid
-        Factory.build(:account, :subdomain => '-').should_not be_valid
+        account_one = Factory.build(:account, :subdomain => 'a')
+        account_one.should_not be_valid
+        account_one.should have_at_least(1).errors_on(:subdomain)
+
+        account_two = Factory.build(:account, :subdomain => '1')
+        account_two.should_not be_valid
+        account_two.should have_at_least(1).errors_on(:subdomain)
+
+        account_three = Factory.build(:account, :subdomain => '-')
+        account_three.should_not be_valid
+        account_three.should have_at_least(1).errors_on(:subdomain)
       end
     end
   end
