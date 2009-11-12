@@ -1,0 +1,27 @@
+# Some sensible defaults
+
+# Log files
+/log/*.log
+
+# Generated documentation
+/doc/api
+/doc/app
+/doc/plugins
+
+# RSpec test coverage
+/coverage
+/spec/reports
+/features/reports
+
+# Pesky .DS_Store files from Mac OS X
+.DS_Store
+
+# Temporary files
+/tmp
+
+# Backups of production data
+/db/*-data.sql.bz2
+
+# ignore the .less generated templates
+/public/stylesheets/*.css
+
