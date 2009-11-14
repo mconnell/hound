@@ -3,6 +3,26 @@ require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_
 require 'spec/autorun'
 require 'spec/rails'
 
+# current_subdomain is automagically set when making a request via
+# a subdomain.host call. Assume for all of our tests we have a
+# current_subdomain in the db.
+def current_subdomain
+  @current_subdomain ||= Factory(:account)
+end
+
+# FIXME: Do something plugin-wise with this
+# pull in the session method from the acts_as_restricted_subdomain otherwise
+# session calls get a bit upset because it is expecting a single instance not
+# an array
+def session
+  if((current_subdomain rescue nil))
+    request.session[current_subdomain_symbol] ||= {}
+    request.session[current_subdomain_symbol]
+  else
+    request.session
+  end
+end
+
 def current_user(stubs = {})
   @current_user ||= mock_model(User, stubs)
 end
