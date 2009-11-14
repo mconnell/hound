@@ -61,6 +61,24 @@ describe Account do
         identical_account.should_not be_valid
         identical_account.should have_at_least(1).errors_on(:subdomain)
       end
+
+      it "should not allow the subdomain 'www'" do
+        account = Factory.build(:account, :subdomain => 'www')
+        account.should_not be_valid
+        account.should have_at_least(1).errors_on(:subdomain)
+      end
+
+      it "should not allow the subdomain 'support'" do
+        account = Factory.build(:account, :subdomain => 'support')
+        account.should_not be_valid
+        account.should have_at_least(1).errors_on(:subdomain)
+      end
+
+      it "should not allow the subdomain 'mail'" do
+        account = Factory.build(:account, :subdomain => 'mail')
+        account.should_not be_valid
+        account.should have_at_least(1).errors_on(:subdomain)
+      end
     end
   end
 end

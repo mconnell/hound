@@ -9,4 +9,5 @@ class Account < ActiveRecord::Base
   validates_length_of     :subdomain, :minimum => 2
   validates_format_of     :subdomain, :with => /^[a-z0-9]{1}[a-z0-9\-]*[a-z0-9]{1}$/i
   validates_uniqueness_of :subdomain
+  validates_exclusion_of  :subdomain, :in => %w( www support mail )
 end
