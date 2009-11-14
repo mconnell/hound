@@ -4,6 +4,9 @@ class Account < ActiveRecord::Base
   # associations
   has_one :user
 
+  # attributes accessible on mass assignment
+  attr_accessible :subdomain
+
   # validations
   validates_presence_of   :subdomain
   validates_length_of     :subdomain, :minimum => 2
