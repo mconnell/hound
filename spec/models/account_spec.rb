@@ -54,6 +54,13 @@ describe Account do
         account_three.should_not be_valid
         account_three.should have_at_least(1).errors_on(:subdomain)
       end
+
+      it "should validate the uniqueness of subdomains" do
+        Factory(:account, :subdomain => 'foobar')
+        identical_account = Factory.build(:account, :subdomain => 'foobar')
+        identical_account.should_not be_valid
+        identical_account.should have_at_least(1).errors_on(:subdomain)
+      end
     end
   end
 end
