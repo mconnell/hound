@@ -8,7 +8,7 @@
       .container_12
         .grid_6
           %h1
-            Hound
+            = "#{h(current_subdomain.subdomain)}.houndapp.com"
         .grid_6
           %ul
             - if current_user.present?
@@ -22,23 +22,26 @@
               %li
                 = link_to 'Login', new_user_session_path
         .clear
-    #main_navigation
-      .container_12
-        .grid_12
-          %ul
-            %li
-              = link_to 'Dashboard', root_path
-            %li
-              = link_to 'Link two', '#'
-            %li
-              = link_to 'Link three', '#'
-        .clear
+    - if current_user.present?
+      #main_navigation
+        .container_12
+          .grid_12
+            %ul
+              %li= link_to 'Dashboard', root_path
+              %li= link_to 'Link two', '#'
+              %li= link_to 'Link three', '#'
+          .clear
     #main_content
       .container_12
         .grid_12
           #flash
             - flash.each do |severity, message|
               %p{:class => severity}= message
+        .clear
+
+        .grid_12{ :id => 'page_heading' }
+          %h2
+            = yield(:page_heading)
         .clear
 
         = yield
