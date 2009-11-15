@@ -33,15 +33,13 @@
           .clear
     #main_content
       .container_12
+        .grid_12{ :id => 'page_heading' }
+          %h2
+            = yield(:page_heading)
+        .clear
         .grid_12
           #flash
             - flash.each do |severity, message|
               %p{:class => severity}= message
         .clear
-
-        .grid_12{ :id => 'page_heading' }
-          %h2
-            = yield(:page_heading)
-        .clear
-
         = yield
