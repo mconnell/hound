@@ -2,6 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe DashboardsController do
 
+  before(:each) do
+    controller.stub!(:current_subdomain).and_return(current_subdomain)
+    request.session = {}
+  end
+
   describe "responding to GET show" do
     def do_get
       get :show

@@ -2,6 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe UserSessionsController do
 
+  before(:each) do
+    controller.stub!(:current_subdomain).and_return(current_subdomain)
+    request.session = {}
+  end
+
   describe "responding to GET new" do
     def do_get
       get :new
@@ -88,7 +93,7 @@ describe UserSessionsController do
 
         it "should flash a notice message" do
           do_post
-          response.flash[:notice].should be_present
+          flash[:notice].should be_present
         end
 
         it "should redirect away from the login page" do
@@ -133,7 +138,7 @@ describe UserSessionsController do
 
         it "should flash a notice message" do
           do_post
-          response.flash[:notice].should be_present
+          flash[:notice].should be_present
         end
 
         it "should redirect away from the login page" do
@@ -180,7 +185,7 @@ describe UserSessionsController do
 
       it "should flash a notice of success" do
         do_delete
-        response.flash[:notice].should be_present
+        flash[:notice].should be_present
       end
 
       it "should destroy the current user session" do
