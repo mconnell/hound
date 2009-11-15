@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  #use_restricted_subdomains :through => 'Account', :by => :subdomain
+  use_restricted_subdomains :through => 'Account', :by => :subdomain
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
