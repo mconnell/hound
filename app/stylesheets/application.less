@@ -1,0 +1,85 @@
+/* Import the 960 CSS framework */
+@import "960_framework/_reset";
+@import "960_framework/_text";
+@import "960_framework/_960"; /* _960_24_col for non-standard layouts */
+
+#header{
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#header ul{
+  margin: 0;
+  float:right;
+}
+
+#header ul li{
+  float:left;
+  list-style-type: none;
+}
+
+#header ul li a{
+  color: #FFFFFF;
+}
+
+#branding{
+  background-color: #444444;
+}
+
+#main_navigation{
+  background-color: #DDDDDD;
+}
+
+#main_navigation ul{
+  list-style-type: none;
+}
+
+#main_navigation ul li{
+  float: left;
+  margin-right: 5px;
+  margin-left: 0;
+}
+
+#main_navigation ul li a{
+  font-size: 15px;
+  display: block;
+  padding: 8px 15px;
+}
+
+#main_navigation ul li a:hover{
+  background-color: #BBBBBB;
+}
+
+#flash .message {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  text-align:center;
+  margin: 0 auto 15px;
+  padding: 1em;
+  background-color: #DDD;
+}
+
+#flash .message p {
+  margin:8px;
+}
+#flash .error {
+  padding: 1em;
+  border: 1px solid #fbb;
+  background-color: #fdd;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+#flash .warning {
+  padding: 1em;
+  border: 1px solid #e0d300;
+  background-color: #ffffcc;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+#flash .notice {
+  border: 1px solid #8ec4df;
+  background-color: #dffaff;
+  padding: 1em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
