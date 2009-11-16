@@ -1,10 +1,14 @@
+@header_colour: #4068AC;
+
 /* Import the 960 CSS framework */
 @import "960_framework/_reset";
 @import "960_framework/_text";
 @import "960_framework/_960"; /* _960_24_col for non-standard layouts */
 
+@import "_formtastic";
+
 #header{
-  background-color: #4068AC;
+  background-color: @header_colour;
   color: #ffffff;
   border-bottom: 1px solid #0745ac;
 }
