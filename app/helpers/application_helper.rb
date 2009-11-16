@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def navigation_li_link_to(text, path)
-    if @active_navigation.present? && @active_navigation == text.downcase.to_sym
+    if @active_navigation.present? && @active_navigation == text
       content_tag :li, link_to(text, path), :class => 'active'
     else
       content_tag :li, link_to(text, path)

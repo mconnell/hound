@@ -10,7 +10,7 @@ class DashboardsController < ApplicationController
 
   private
   def set_active_navigation
-    @active_navigation = :dashboard
+    @active_navigation = 'Dashboard'
   end
 
 end
