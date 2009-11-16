@@ -1,1 +1,29 @@
 - page_heading 'Account Settings'
+
+.grid_8
+  .right_border
+    .setting.first
+      %h3 Domain name
+      %p= link_to "http://#{h current_account.subdomain}.houndapp.com", "http://#{h current_account.subdomain}.houndapp.com"
+      %p.info
+        This domain is provided as part of your monthly subscription.
+
+    .setting
+      %h3 Email Address
+      %p=h current_account.user.email
+      %p.info
+        This is the email address used for account authentication. Any alerts or messages from
+        Hound will be delivered to this email address.
+    .setting
+      %h3 Password
+      %p ******
+      %p.info
+        We value security and your password is protected with a strong, non-reversible encrpytion.
+        We will never contact you asking for your password or other account details.
+.grid_4
+  %h3 Account Overview
+  %p
+    Active Since: #{current_account.created_at.to_s(:long)}
+  %h3 Subscription Plan
+  %p
+    Your account is currently not associated with a subscription plan.
