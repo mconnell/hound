@@ -12,24 +12,19 @@
         .grid_6
           %ul
             - if current_user.present?
-              %li
-                = link_to 'My Profile', '#'
-              %li
-                = link_to 'Account Settings', '#'
-              %li
-                = link_to 'Logout', user_session_path, :method => :delete
+              %li= link_to 'My Profile', '#'
+              %li= link_to 'Account Settings', '#'
+              %li= link_to 'Logout', user_session_path, :method => :delete
             - else
-              %li
-                = link_to 'Login', new_user_session_path
+              %li= link_to 'Login', new_user_session_path
         .clear
     - if current_user.present?
       #main_navigation
         .container_12
           .grid_12
             %ul
-              %li= link_to 'Dashboard', root_path
-              %li= link_to 'Link two', '#'
-              %li= link_to 'Link three', '#'
+              = navigation_li_link_to('Dashboard', root_path)
+              = navigation_li_link_to('Domains', '#')
           .clear
     #main_content
       .container_12
