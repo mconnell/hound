@@ -12,8 +12,7 @@
         .grid_6
           %ul
             - if current_user.present?
-              %li= link_to 'My Profile', '#'
-              %li= link_to 'Account Settings', '#'
+              %li= link_to 'Account Settings', account_settings_path
               %li= link_to 'Logout', user_session_path, :method => :delete
             - else
               %li= link_to 'Login', new_user_session_path
