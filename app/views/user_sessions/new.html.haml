@@ -1,8 +1,10 @@
 - page_heading 'Login'
 
-- semantic_form_for @user_session, :url => user_session_path do |form|
-  - form.inputs do
-    = form.input :email
-    = form.input :password
-  - form.buttons do
-    = form.commit_button 'Login'
+.grid_8{:class => 'prefix_2 suffix_2'}
+  - semantic_form_for @user_session, :url => user_session_path do |form|
+    - form.inputs do
+      = form.input :email
+      = form.input :password
+    - form.buttons do
+      = form.commit_button 'Login'
+.clear
