@@ -1,0 +1,8 @@
+- page_heading 'Change Email'
+
+.grid_8{:class => 'prefix_2 suffix_2'}
+  - semantic_form_for :user, :url => account_settings_email_path, :html => { :method => :put } do |form|
+    - form.inputs do
+      = form.input :email
+    - form.buttons do
+      = form.commit_button 'Update'
