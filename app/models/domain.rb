@@ -12,6 +12,10 @@ class Domain < ActiveRecord::Base
   validate                :name_components_are_valid
 
 
+  def to_param
+    name
+  end
+
   # is this domain name an international domain name?
   def idn?
     name != ascii_name ? true : false
