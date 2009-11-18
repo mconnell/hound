@@ -1,0 +1,7 @@
+.grid_8{:class => 'prefix_2 suffix_2'}
+  - semantic_form_for domain do |form|
+    - form.inputs do
+      = form.label :name
+      = form.text_field :name
+    - form.buttons do
+      = form.commit_button (domain.new_record? ? 'Create' : 'Update')
