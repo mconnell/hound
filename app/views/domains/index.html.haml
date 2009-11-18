@@ -1,0 +1,10 @@
+- page_heading 'Domains'
+
+.grid_12
+  %p
+    = link_to 'New Domain', new_domain_path
+
+  - @domains.each do |domain|
+    = link_to h(domain.name), domain
+    %br/
+.clear
