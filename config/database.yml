@@ -41,7 +41,7 @@ production:
   reconnect: false
   database: hound
   pool: 5
-  username: root
+  username: hound
   password: qRvsSS9h
 
 cucumber:
