@@ -27,6 +27,10 @@ describe DashboardsController do
     describe "after logging in" do
       before(:each) do
         login
+        @number_of_domains    = 123
+        @number_of_categories = 456
+        Domain.stub!(:count).and_return(@number_of_domains)
+        Category.stub!(:count).and_return(@number_of_categories)
       end
 
       it "should be successful" do
@@ -37,6 +41,26 @@ describe DashboardsController do
       it "should render the :show template" do
         do_get
         response.should render_template(:show)
+      end
+
+      it "should get a count of all the domains" do
+        Domain.should_receive(:count)
+        do_get
+      end
+
+      it "should get a count of all the categories" do
+        Category.should_receive(:count)
+        do_get
+      end
+
+      it "should assign the number_of_domains to the view" do
+        do_get
+        assigns(:number_of_domains).should == @number_of_domains
+      end
+
+      it "should assign the number_of_categories to the view" do
+        do_get
+        assigns(:number_of_categories).should == @number_of_categories
       end
     end
 
