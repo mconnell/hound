@@ -4,6 +4,8 @@ class Domains::CategoriesController < ApplicationController
   before_filter :find_domain, :set_active_navigation
 
   def index
+    @categories = @domain.categories
+
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -22,6 +24,7 @@ class Domains::CategoriesController < ApplicationController
   end
 
   def set_active_navigation
-    @active_navigation = 'Domains'
+    @active_navigation      = 'Domains'
+    @active_sub_navigation  = 'Categories'
   end
 end

@@ -29,6 +29,7 @@ describe Domains::CategoriesController do
         login
         @domain = mock_model(Domain)
         Domain.stub!(:find_by_name!).and_return(@domain)
+        @domain.stub!(:categories).and_return([mock_model(Category)])
       end
 
       it "should be successful" do
