@@ -7,3 +7,6 @@
 
 %p
   Added to your account at: #{@domain.created_at}
+
+%p
+  = link_to 'Delete Domain', domain_path(@domain), {:class => 'delete', :method => :delete, :confirm => 'Are you sure?'}

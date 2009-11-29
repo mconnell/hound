@@ -16,6 +16,6 @@
   = f.text_field :name
   = f.submit
 
-- @domain.categories.roots.each do |category|
+- @categories.roots.each do |category|
   = render :partial => 'domains/categories/category', :locals => { :category => category, :indentation => 1 }
   <br />

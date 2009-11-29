@@ -79,6 +79,26 @@
   text-decoration: underline;
 }
 
+.sub_navigation ul{
+  list-style-type: none;
+}
+
+.sub_navigation ul li{
+  margin: 0.5em 1em;
+  padding: 0.2em 0;
+}
+
+.sub_navigation ul li.active {
+  background-color: #eeeeee;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.sub_navigation ul li a{
+  margin: 0.5em;
+  color: @header_colour;
+}
+
 #flash .message {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -174,4 +194,13 @@ h4{
   margin-top: 0.5em;
   border: 1px solid #eee;
   padding: 0.5em 0em;
+}
+
+a.delete{
+  color: #FF0000;
+}
+
+a.delete:hover{
+  background-color: #FF0000;
+  color: #FFFFFF;
 }

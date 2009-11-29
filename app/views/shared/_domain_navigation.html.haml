@@ -1,4 +1,4 @@
-%ul
-  = sub_navigation_li_link_to 'Overview',   domain_path(domain)
-  = sub_navigation_li_link_to 'Categories', domain_categories_path(domain)
-  = sub_navigation_li_link_to 'Delete',     domain_path(domain), {:method => :delete, :confirm => 'Are you sure?'}
+.sub_navigation
+  %ul
+    = sub_navigation_li_link_to 'Overview',   domain_path(domain)
+    = sub_navigation_li_link_to 'Categories', domain_categories_path(domain)
