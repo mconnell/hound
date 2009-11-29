@@ -37,7 +37,99 @@ describe Domain do
     end
   end
 
+  describe "association extensions" do
+    describe "domain_category_extension" do
+      describe "@domain.categories.add association method" do
+        describe "when adding a category to a domain that it already has" do
+          before(:each) do
+            @domain = Factory(:domain)
+            @category = Factory(:category, :name => 'foo')
+            @domain.categories += [@category]
+          end
+
+          it "should return ['foo']" do
+            @domain.categories.add('foo').should == ['foo']
+          end
+
+          it "should still only have one category with that name" do
+            @domain.categories.add('foo')
+            @domain.categories.size.should == 1
+          end
+        end
+
+        describe "when adding a category that exists generally" do
+          before(:each) do
+            @domain = Factory(:domain)
+            @domain.categories = []
+            @domain.save
+            @category = Factory(:category, :name => 'foo')
+          end
+
+          it "should return ['foo']" do
+            @domain.categories.add('foo').should == ['foo']
+          end
+
+          it "should add the 'foo' category to the domain" do
+            @domain.categories.add('foo')
+            @domain.categories.should include(@category)
+          end
+        end
+        describe "when the category doesn't exist" do
+          before(:each) do
+            @domain = Factory(:domain)
+          end
+
+          it "should create a new category" do
+            @domain.categories.size.should == 0
+            @domain.categories.add('foobar')
+            @domain.categories.size.should == 1
+          end
+
+          it "should include the newly created category in the associaiton" do
+            @domain.categories.add('foo')
+            @domain.categories.last.name.should == 'foo'
+          end
+
+          it "should return ['bar']" do
+            @domain.categories.add('bar').should == ['bar']
+          end
+        end
+
+        describe "when the category name contains a slash (category path)" do
+          describe "and none of the categories exist" do
+            before(:each) do
+              @domain = Factory(:domain)
+            end
+
+            it "should create the new categories" do
+              @domain.categories.add('foo/bar')
+              @domain.categories.find_by_name('foo').should be_true
+              @domain.categories.find_by_name('bar').should be_true
+            end
+
+            it "should create sports as a parent category" do
+              @domain.categories.add('sports/tennis')
+              @domain.categories.find_by_name('sports').parent.should be_nil
+            end
+
+            it "should create ice hockey as a child category of sports" do
+              @domain.categories.add('sports/ice hockey')
+              @domain.categories.find_by_name('ice hockey').parent.name.should == 'sports'
+            end
+          end
+        end
+      end
+    end
+  end
+
   describe "public instance methods" do
+    describe "to_param" do
+      it "should return a domains name" do
+        domain = Factory(:domain, :name => 'example.com')
+        domain.to_param.should == 'example.com'
+      end
+    end
+
     describe "idn?" do
       it "should return true when the domain is an international domain name" do
         domain = Factory.build(:domain, :name => 'öl.pl')
