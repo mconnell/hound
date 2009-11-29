@@ -2,6 +2,9 @@ class Domain < ActiveRecord::Base
   include IDN
   acts_as_restricted_subdomain :through => :account
 
+  # Associations
+  has_and_belongs_to_many :categories, :uniq => true
+
   # AR callbacks
   before_create :generate_ascii_name
 
