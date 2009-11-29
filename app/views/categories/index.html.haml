@@ -1,0 +1,6 @@
+- page_heading 'Categories'
+
+- @categories.each do |category|
+  .grid_12.category
+    = link_to h(category.name), category
+    Number of domains: #{category.domains.count}

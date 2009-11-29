@@ -1,0 +1,21 @@
+- page_heading h(@domain.name)
+
+%h3 Categories
+%p
+  Categories allow you to manage your domains more effectively.
+  Add this domain to additional categories using the form below.
+
+%p
+  Categories can exist inside other categories.
+  <br />
+  eg. adding a domain to the category: clients/acme ltd
+  <br />
+  Creates the 'clients' category and creates an 'acme ltd' category inside 'clients'
+
+- form_for :category, :url => domain_categories_url(@domain) do |f|
+  = f.text_field :name
+  = f.submit
+
+- @domain.categories.roots.each do |category|
+  = render :partial => 'domains/categories/category', :locals => { :category => category, :indentation => 1 }
+  <br />

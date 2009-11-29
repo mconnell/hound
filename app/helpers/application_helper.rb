@@ -18,4 +18,15 @@ module ApplicationHelper
     end
   end
 
+  def sub_navigation_li_link_to(text, path, options = {})
+    output = []
+    if @active_sub_navigation.present? && @active_sub_navigation == text
+      output << "<li class=\"active\">"
+    else
+      output << "<li>"
+    end
+    output << link_to(text, path, options)
+    output << "</li>"
+    output.join('')
+  end
 end

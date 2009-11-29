@@ -1,10 +1,9 @@
 - page_heading @domain.name
 
-.grid_12
-  - if @domain.idn?
-    %p
-      This is an international domain name, the real domain is:
-      = h @domain.ascii_name
+- if @domain.idn?
+  %p
+    This is an international domain name, the real domain is:
+    = h @domain.ascii_name
 
-    %p
-      Added to your account at: #{@domain.created_at}
+%p
+  Added to your account at: #{@domain.created_at}

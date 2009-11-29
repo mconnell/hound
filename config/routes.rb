@@ -8,5 +8,10 @@ ActionController::Routing::Routes.draw do |map|
     account_settings.resource :email,    :only => [:edit, :update]
   end
 
-  map.resources :domains, :requirements => { :id => %r([^/;,?]+) }
+  map.resources :domains, :requirements => { :id => %r([^/;,?]+) } do |domain|
+    domain.resources  :categories,
+                      :namespace => "domains/",
+                      :requirements => { :domain_id => %r([^/;,?]+) }
+  end
+  map.resources :categories, :only => [:index, :show]
 end

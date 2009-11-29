@@ -1,0 +1,5 @@
+= link_to h(category.name), category_path(category)
+- category.children.each do |category|
+  <br />
+  = "- " * indentation
+  = render :partial => 'domains/categories/category', :locals => { :category => category, :indentation => indentation + 1 }

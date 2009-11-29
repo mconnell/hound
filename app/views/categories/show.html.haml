@@ -1,0 +1,5 @@
+- page_heading @category.name
+
+%h3 Domains
+- @category.domains.each do |domain|
+  = link_to h(domain.name), domain

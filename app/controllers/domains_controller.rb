@@ -10,8 +10,9 @@ class DomainsController < ApplicationController
 
   def show
     @domain = Domain.find_by_name!(params[:id])
+    @active_sub_navigation = 'Overview'
     respond_to do |format|
-      format.html
+      format.html { render :layout => 'domain' }
     end
   end
 

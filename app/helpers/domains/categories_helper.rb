@@ -1,0 +1,2 @@
+module Domains::CategoriesHelper
+end

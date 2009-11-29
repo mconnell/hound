@@ -32,4 +32,8 @@
             - flash.each do |severity, message|
               %p{:class => severity}= message
         .clear
-        = yield
+        .grid_3
+          = render :partial => 'shared/domain_navigation', :locals => { :domain => @domain }
+        .grid_9
+          = yield
+        .clear
