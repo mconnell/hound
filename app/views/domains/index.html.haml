@@ -5,11 +5,12 @@
     %li
       All Domains
 
+.grid_3.prefix_6
+  = link_to('Add a Domain', new_domain_path, :class => 'add button')
+
 .grid_9
-  %p
-    = link_to 'New Domain', new_domain_path
 
   - @domains.each do |domain|
-    = link_to h(domain.name), domain
-    %br/
+    .individual_domain
+      = link_to h(domain.name), domain
 .clear
