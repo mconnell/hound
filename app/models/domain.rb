@@ -25,6 +25,7 @@ class Domain < ActiveRecord::Base
 
   # Associations
   has_and_belongs_to_many :categories, :uniq => true, :extend => DomainCategoryExtension
+  has_one :dns
 
   # AR callbacks
   before_create :generate_ascii_name
