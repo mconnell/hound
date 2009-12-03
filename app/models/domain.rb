@@ -15,6 +15,29 @@ class Domain < ActiveRecord::Base
   validates_length_of     :name, :within => 4..255
   validate                :name_components_are_valid
 
+  # State_machine
+  state_machine :state, :initial => :new do
+    event :build_profile do
+      transition :new => :building
+    end
+    event :make_active do
+      transition :building => :active
+    end
+
+    state :building do
+      def refresh
+        dns.refresh
+        make_active
+      end
+    end
+
+    state :active do
+      def refresh
+        dns.refresh
+      end
+    end
+  end
+
   # override the initializer to build an associated dns object if one doesn't
   # already exist for the domain.
   def initialize(*args)
