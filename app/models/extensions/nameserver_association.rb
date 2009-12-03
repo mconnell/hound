@@ -13,8 +13,8 @@ module Extensions
     def live
       if (proxy_owner.present? && proxy_owner.domain.present? && proxy_owner.domain.ascii_name.present?)
         nameservers = []
-        live_nameserver_host_names.each do |host_name|
-          nameservers << { :host_name => host_name }
+        live_nameserver_host_names.each do |host|
+          nameservers << { :host => host }
         end
         nameservers
       else
@@ -26,7 +26,7 @@ module Extensions
     def refresh
       live_ns_ids = []
       live.each do |record|
-        nameserver = (Nameserver.find_by_host_name(record[:host_name]) || build(record))
+        nameserver = (Nameserver.find_by_host(record[:host]) || build(record))
         if nameserver.new_record?
           self << nameserver
         else
