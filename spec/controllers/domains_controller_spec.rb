@@ -182,7 +182,7 @@ describe DomainsController do
       before(:each) do
         login
         Domain.stub!(:new).and_return(mock_domain)
-        mock_domain.stub!(:save)
+        mock_domain.stub!(:build_profile)
       end
 
       it "should attempt to build a new domain" do
@@ -191,13 +191,13 @@ describe DomainsController do
       end
 
       it "should attempt to save the domain" do
-        mock_domain.should_receive(:save)
+        mock_domain.should_receive(:build_profile)
         do_post
       end
 
       describe "when the domain is a valid object" do
         before(:each) do
-          mock_domain.stub!(:save).and_return(true)
+          mock_domain.stub!(:build_profile).and_return(true)
         end
 
         it "should redirect to the domain's show page" do
@@ -208,7 +208,7 @@ describe DomainsController do
 
       describe "when the domain is not valid" do
         before(:each) do
-          mock_domain.stub!(:save).and_return(false)
+          mock_domain.stub!(:build_profile).and_return(false)
         end
 
         it "should render the new action again" do

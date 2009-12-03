@@ -15,12 +15,11 @@ Rails::Initializer.run do |config|
   config.gem 'factory_girl'
   config.gem 'haml'
   config.gem 'authlogic'
-  config.gem 'webrat', :lib => false
-  config.gem 'cucumber', :lib => false
-  config.gem 'rspec-rails', :lib => false
-  config.gem 'rspec', :lib => false
   config.gem 'less'
   config.gem 'idn', :version => '0.0.2'
+  config.gem 'state_machine'
+  config.gem 'net-dns', :lib => 'net/dns/resolver', :version => '0.5.3'
+  config.gem 'delayed_job'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

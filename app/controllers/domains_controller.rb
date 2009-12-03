@@ -25,7 +25,7 @@ class DomainsController < ApplicationController
 
   def create
     @domain = Domain.new(params[:domain])
-    if @domain.save
+    if @domain.build_profile
       respond_to do |format|
         format.html { redirect_to domain_path(@domain) }
       end

@@ -1,0 +1,2 @@
+class MxRecord < Record
+end

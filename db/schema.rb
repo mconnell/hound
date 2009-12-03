@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091129154602) do
+ActiveRecord::Schema.define(:version => 20091203220219) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -38,16 +38,60 @@ ActiveRecord::Schema.define(:version => 20091129154602) do
   add_index "categories_domains", ["category_id"], :name => "index_categories_domains_on_category_id"
   add_index "categories_domains", ["domain_id"], :name => "index_categories_domains_on_domain_id"
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dns", :force => true do |t|
+    t.integer  "domain_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dns_nameservers", :id => false, :force => true do |t|
+    t.integer "dns_id"
+    t.integer "nameserver_id"
+  end
+
   create_table "domains", :force => true do |t|
     t.integer  "account_id"
     t.string   "name"
     t.string   "ascii_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
   add_index "domains", ["account_id"], :name => "index_domains_on_account_id"
   add_index "domains", ["name"], :name => "index_domains_on_name"
+
+  create_table "nameservers", :force => true do |t|
+    t.string   "host"
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "records", :force => true do |t|
+    t.integer  "dns_id"
+    t.string   "host"
+    t.string   "type"
+    t.string   "value"
+    t.integer  "preference"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "records", ["dns_id"], :name => "index_records_on_dns_id"
 
   create_table "users", :force => true do |t|
     t.integer  "account_id"

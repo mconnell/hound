@@ -1,30 +1,10 @@
-module DomainCategoryExtension
-  # Association extension for the @domain.categories association
-  # usage: @domain.categories.add('category name')
-  # The method will attempt to find an existing model with the name
-  # and add it to this domain or will create a new category.
-  def add(category_name)
-    names = category_name.split('/')
-    names.each_with_index do |name, index|
-      parent = ( index > 0 ? find_by_name(names[index-1]) : nil)
-      parent_id = parent.id if parent.present?
-
-      if category = find_by_name_and_parent_id(name, parent_id).present?
-      elsif ((category = Category.find_by_name_and_parent_id(name, parent_id)) && category.present?)
-        self << category.first
-      else
-        self.create(:name => name, :parent_id => parent_id)
-      end
-    end
-  end
-end
-
 class Domain < ActiveRecord::Base
   include IDN
   acts_as_restricted_subdomain :through => :account
 
   # Associations
-  has_and_belongs_to_many :categories, :uniq => true, :extend => DomainCategoryExtension
+  has_and_belongs_to_many :categories, :uniq => true, :extend => Extensions::DomainCategory
+  has_one :dns
 
   # AR callbacks
   before_create :generate_ascii_name
@@ -35,6 +15,35 @@ class Domain < ActiveRecord::Base
   validates_length_of     :name, :within => 4..255
   validate                :name_components_are_valid
 
+  # State_machine
+  state_machine :state, :initial => :new do
+    event :build_profile do
+      transition :new => :building
+    end
+    event :make_active do
+      transition :building => :active
+    end
+
+    state :building do
+      def refresh
+        dns.refresh
+        make_active
+      end
+    end
+
+    state :active do
+      def refresh
+        dns.refresh
+      end
+    end
+  end
+
+  # override the initializer to build an associated dns object if one doesn't
+  # already exist for the domain.
+  def initialize(*args)
+    super
+    build_dns if dns.blank?
+  end
 
   def to_param
     name
