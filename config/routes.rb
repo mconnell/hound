@@ -12,6 +12,11 @@ ActionController::Routing::Routes.draw do |map|
     domain.resources  :categories,
                       :namespace => "domains/",
                       :requirements => { :domain_id => %r([^/;,?]+) }
+
+    domain.resource   :dns_information,
+                      :namespace => "domains/",
+                      :requirements => { :domain_id => %r([^/;,?]+) }
   end
+
   map.resources :categories, :only => [:index, :show]
 end

@@ -1,0 +1,41 @@
+- page_heading @domain.name
+
+%h3 DNS Information
+
+%h4 Nameservers
+%table
+  %thead
+    %tr
+      %th Host
+  %tbody
+    - @domain.dns.nameservers.each do |nameserver|
+      %tr
+        %td=h nameserver.host
+
+%h4 A Records
+%table
+  %thead
+    %tr
+      %th Host
+      %th Type
+      %th Value
+  %tbody
+    - @domain.dns.a_records.each do |a_record|
+      %tr
+        %td=h a_record.host
+        %td IN A
+        %td=h a_record.value
+
+%h4 MX Records
+%table
+  %thead
+    %tr
+      %th Type
+      %th Preference
+      %th Value
+  %tbody
+    - @domain.dns.mx_records.each do |mx_record|
+      %tr
+        %td MX
+        %td=h mx_record.preference
+        %td=h mx_record.value
