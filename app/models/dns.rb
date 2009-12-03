@@ -7,4 +7,11 @@ class Dns < ActiveRecord::Base
 
   # validations
   validates_presence_of :domain_id
+
+  # refresh all of the models related to the current instance
+  def refresh
+    nameservers.refresh
+    a_records.refresh
+    mx_records.refresh
+  end
 end
