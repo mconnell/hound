@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203211905) do
+ActiveRecord::Schema.define(:version => 20091203214625) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20091203211905) do
     t.string   "ascii_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
   add_index "domains", ["account_id"], :name => "index_domains_on_account_id"
