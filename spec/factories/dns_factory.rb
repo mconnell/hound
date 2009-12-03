@@ -1,3 +1,3 @@
 Factory.define :dns do |dns|
-  dns.association :domain
+  dns.domain_id '123'
 end

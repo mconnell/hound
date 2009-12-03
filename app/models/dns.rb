@@ -3,5 +3,5 @@ class Dns < ActiveRecord::Base
   belongs_to :domain
 
   # validations
-  validates_presence_of :domain
+  validates_presence_of :domain_id
 end

@@ -13,9 +13,9 @@ describe Dns do
 
   describe "validations" do
     it "should require a domain" do
-      dns = Factory.build(:dns, :domain => nil)
+      dns = Factory.build(:dns, :domain_id => nil)
       dns.should_not be_valid
-      dns.should have(1).error_on(:domain)
+      dns.should have(1).error_on(:domain_id)
     end
   end
 end

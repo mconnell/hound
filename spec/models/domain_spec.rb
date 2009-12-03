@@ -9,6 +9,10 @@ describe Domain do
     it "should persist the new instance in the database" do
       lambda { Factory(:domain) }.should change(Domain, :count).by(1)
     end
+
+    it "should have a dns record by default" do
+      Factory(:domain).dns.class.should == Dns
+    end
   end
 
   describe "validations" do

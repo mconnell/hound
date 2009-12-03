@@ -36,6 +36,12 @@ class Domain < ActiveRecord::Base
   validates_length_of     :name, :within => 4..255
   validate                :name_components_are_valid
 
+  # override the initializer to build an associated dns object if one doesn't
+  # already exist for the domain.
+  def initialize(*args)
+    super
+    build_dns if dns.blank?
+  end
 
   def to_param
     name
