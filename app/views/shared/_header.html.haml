@@ -1,0 +1,15 @@
+#header
+  .container_12
+    .grid_6
+      %h1
+        = link_to "#{h(current_subdomain.subdomain)}.houndapp.com", root_url
+    .grid_6
+      %ul.user_nav
+        - if current_user.present?
+          = navigation_li_link_to('Account Settings', account_settings_path)
+          %li= link_to 'Logout', user_session_path, :method => :delete
+        - else
+          %li= link_to 'Login', new_user_session_path
+    .clear
+    - if current_user.present?
+      = render :partial => 'shared/main_navigation'

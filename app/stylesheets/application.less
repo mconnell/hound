@@ -8,9 +8,8 @@
 @import "_formtastic";
 
 #header{
-  background-color: @header_colour;
+  background-color: #24476b;
   color: #ffffff;
-  border-bottom: 1px solid #0745ac;
 }
 
 #header ul{
@@ -30,29 +29,27 @@
   padding: 0.2em 0.5em 0.3em 0.5em;
 }
 
-#header ul li.active a{
-  background-color: #022f78;
-
-  -moz-border-radius: 0.5em;
-  -webkit-border-radius: 0.5em;
+#header ul.user_nav li.active a{
+  background-color: #122334;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 
 #header ul li a:hover{
   text-decoration: underline;
 }
 
-
 #branding{
   background-color: #444444;
 }
 
-#main_navigation{
-  border-top: 1px solid #ffffff;
-  background-color: #E7F3FB;
+#header h1{
+  margin: 0;
 }
 
 #main_navigation ul{
   list-style-type: none;
+  float: left;
 }
 
 #main_navigation ul li{
@@ -64,19 +61,24 @@
 #main_navigation ul li a{
   font-size: 15px;
   display: block;
-  padding: 8px 15px;
-  color: #000000;
+  padding: 5px 15px;
+  color: #FFFFFF;
+  background-color: #162c42;
 }
 
 #main_navigation ul li.active a{
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   text-decoration: none;
   color: #aaa;
 }
 
 #main_navigation ul li a:hover{
-  background-color: #FFFFFF;
+  background-color: #222;
   text-decoration: underline;
+}
+
+#main_navigation ul li.active a:hover{
+  background-color: #ffffff;
 }
 
 .sub_navigation ul{
@@ -135,6 +137,7 @@
 
 
 #main_content #page_heading{
+  margin-top: 1em;
   border-bottom: 1px solid #dddddd;
 }
 
@@ -150,6 +153,10 @@ h1 a{
 #main_content h2{
   color: #324479;
   margin: 0.2em 0em;
+}
+
+#footer{
+  text-align:right;
 }
 
 h3{
