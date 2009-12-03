@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203202729) do
+ActiveRecord::Schema.define(:version => 20091203211905) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(:version => 20091203202729) do
     t.datetime "updated_at"
   end
 
+  create_table "dns_nameservers", :id => false, :force => true do |t|
+    t.integer "dns_id"
+    t.integer "nameserver_id"
+  end
+
   create_table "domains", :force => true do |t|
     t.integer  "account_id"
     t.string   "name"
@@ -54,6 +59,25 @@ ActiveRecord::Schema.define(:version => 20091203202729) do
 
   add_index "domains", ["account_id"], :name => "index_domains_on_account_id"
   add_index "domains", ["name"], :name => "index_domains_on_name"
+
+  create_table "nameservers", :force => true do |t|
+    t.string   "host"
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "records", :force => true do |t|
+    t.integer  "dns_id"
+    t.string   "host"
+    t.string   "type"
+    t.string   "value"
+    t.integer  "preference"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "records", ["dns_id"], :name => "index_records_on_dns_id"
 
   create_table "users", :force => true do |t|
     t.integer  "account_id"

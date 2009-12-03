@@ -1,0 +1,2 @@
+class ARecord < Record
+end
