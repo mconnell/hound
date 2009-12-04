@@ -1,5 +1,5 @@
 # Hound
-This is the source code for Hound, the domain tracking app.
+This is the source code for Hound, the domain portfolio management app thing that I go on about.
 
 ## System Dependencies
     libidn
