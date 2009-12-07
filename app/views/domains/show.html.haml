@@ -5,6 +5,9 @@
     This is an international domain name, the real domain is:
     = h @domain.ascii_name
 
+- @domain.events.recent.each do |event|
+  = render_event(event)
+
 %p
   Added to your account at: #{@domain.created_at}
 
