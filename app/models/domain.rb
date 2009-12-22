@@ -5,6 +5,9 @@ class Domain < ActiveRecord::Base
   # Associations
   has_and_belongs_to_many :categories, :uniq => true, :extend => Extensions::DomainCategory
   has_one :dns
+  has_many :events, :foreign_key => :object_id,
+                    :conditions => ['object_class_name = ?', class_name],
+                    :order => 'created_at DESC'
 
   # AR callbacks
   before_create :generate_ascii_name

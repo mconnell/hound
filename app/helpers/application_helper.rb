@@ -29,4 +29,15 @@ module ApplicationHelper
     output << "</li>"
     output.join('')
   end
+
+  def render_event(event)
+    plural_object_name   = event.object_class_name.tableize
+    singular_object_name = plural_object_name.singularize
+
+    render :partial => "/events/#{plural_object_name}/#{event.object_action}",
+           :locals => {
+             :event                      => event,
+             singular_object_name.to_sym => event.object_class_name.constantize.new(event.object_attributes)
+            }
+  end
 end

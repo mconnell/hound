@@ -2,7 +2,8 @@ class Account < ActiveRecord::Base
   use_for_restricted_subdomains :by => :subdomain
 
   # associations
-  has_one :user
+  has_one  :user
+  has_many :events
 
   # attributes accessible on mass assignment
   attr_accessible :subdomain

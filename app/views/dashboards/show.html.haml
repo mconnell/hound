@@ -4,6 +4,9 @@
   %h3
     Recent Activity
 
+  - current_account.events.recent.each do |event|
+    = render_event(event)
+
 .grid_4
   .domain_summary
     %h3
