@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091222122936) do
+ActiveRecord::Schema.define(:version => 20100101114311) do
 
   create_table "accounts", :force => true do |t|
     t.string   "subdomain"
@@ -86,6 +86,16 @@ ActiveRecord::Schema.define(:version => 20091222122936) do
   end
 
   add_index "events", ["account_id"], :name => "index_events_on_account_id"
+
+  create_table "google_analytics_reports", :force => true do |t|
+    t.integer  "domain_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "visits"
+    t.integer  "page_views"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "nameservers", :force => true do |t|
     t.string   "host"
