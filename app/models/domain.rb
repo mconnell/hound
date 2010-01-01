@@ -8,6 +8,7 @@ class Domain < ActiveRecord::Base
   has_many :events, :foreign_key => :object_id,
                     :conditions => ['object_class_name = ?', class_name],
                     :order => 'created_at DESC'
+  has_many :google_analytics_reports, :class_name => 'Google::AnalyticsReport'
 
   # AR callbacks
   before_create :generate_ascii_name
