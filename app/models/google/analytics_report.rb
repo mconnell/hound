@@ -12,6 +12,22 @@ class Google::AnalyticsReport < ActiveRecord::Base
 
   before_create :fetch_report_data
 
+  named_scope :interval, lambda { |start_at, end_at|
+    {
+      :conditions => ['start_at >= ? AND end_at <= ?', start_at, end_at],
+      :order      => 'start_at ASC'
+    }
+  }
+
+  # convenience methods for interval named_scope
+  def self.last_month
+    interval(1.month.ago.beginning_of_month, 1.month.ago.end_of_month)
+  end
+
+  def self.current_month
+    interval(Time.now.beginning_of_month, Time.now.end_of_month)
+  end
+
   private
   def fetch_report_data
     start_date = start_at || 1.day.ago.beginning_of_day
