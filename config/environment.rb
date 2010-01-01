@@ -20,6 +20,7 @@ Rails::Initializer.run do |config|
   config.gem 'state_machine'
   config.gem 'net-dns', :lib => 'net/dns/resolver', :version => '0.5.3'
   config.gem 'delayed_job'
+  config.gem 'garb', :version => '0.5.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
