@@ -13,6 +13,7 @@ This is the source code for Hound, the domain portfolio management app thing tha
     idn
     state_machine
     net-dns
+    garb
 
 delayed_job
 ## Useful shit
