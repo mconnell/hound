@@ -58,6 +58,17 @@ class Domain < ActiveRecord::Base
     name != ascii_name ? true : false
   end
 
+  # fetch all of the records for the current month so we have some
+  # data to play with
+  def build_google_analytics_profile(date_time = DateTime.now)
+    (date_time.beginning_of_month .. date_time).each do |date|
+      google_analytics_reports.create!(
+        :start_at => date.beginning_of_day,
+        :end_at   => date.end_of_day
+      )
+    end
+  end
+
   private
   # validation method for checking if a component/label of a domain name is less than
   # the RFC specified limit of 63 characters
