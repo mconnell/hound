@@ -44,8 +44,8 @@ class Google::AnalyticsReport < ActiveRecord::Base
 
       self.start_at   = start_date
       self.end_at     = end_date
-      self.visits     = result.visits
-      self.page_views = result.pageviews
+      self.visits     = result.present? ? result.visits    : 0
+      self.page_views = result.present? ? result.pageviews : 0
     end
   end
 
