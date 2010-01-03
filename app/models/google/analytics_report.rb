@@ -28,6 +28,10 @@ class Google::AnalyticsReport < ActiveRecord::Base
     interval(Time.now.beginning_of_month, Time.now.end_of_month)
   end
 
+  def self.last_30_days
+    interval(30.days.ago.beginning_of_day, 1.day.ago.end_of_day)
+  end
+
   private
   def fetch_report_data
     start_date = start_at || 1.day.ago.beginning_of_day
