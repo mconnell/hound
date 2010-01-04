@@ -69,8 +69,13 @@ class Domain < ActiveRecord::Base
     end
   end
 
+  # method to update the google analytics tracking code
+  # for time being changing the code erases old data and re-populates
+  # the report data for simplicity
   def update_ga_tracking_code(ga_tracking_code)
-    update_attributes(:ga_tracking_code => ga_tracking_code)
+    update_attributes!(:ga_tracking_code => ga_tracking_code)
+    google_analytics_reports.destroy_all
+    send_later(:build_google_analytics_profile)
   end
 
   private
