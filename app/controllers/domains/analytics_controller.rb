@@ -25,6 +25,30 @@ class Domains::AnalyticsController < ApplicationController
     end
   end
 
+  def edit
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def update
+    if @domain.update_ga_tracking_code(params[:domain][:ga_tracking_code])
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "Analytics tracking code updated"
+          redirect_to domain_analytics_path(@domain)
+        }
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash.now[:error] = "An error occurred while saving"
+          render :action => :edit
+        }
+      end
+    end
+  end
+
   private
   def find_domain
     @domain = Domain.find_by_name!(params[:domain_id])

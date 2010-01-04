@@ -69,6 +69,10 @@ class Domain < ActiveRecord::Base
     end
   end
 
+  def update_ga_tracking_code(ga_tracking_code)
+    update_attributes(:ga_tracking_code => ga_tracking_code)
+  end
+
   private
   # validation method for checking if a component/label of a domain name is less than
   # the RFC specified limit of 63 characters
