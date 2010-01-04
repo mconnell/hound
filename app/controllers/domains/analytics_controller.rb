@@ -3,7 +3,7 @@ class Domains::AnalyticsController < ApplicationController
 
   before_filter :find_domain, :set_active_navigation
 
-  def index
+  def show
 
     # FIXME: This really needs to be refactored..
     unless @domain.google_analytics_reports.last_30_days.empty?

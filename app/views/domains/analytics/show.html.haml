@@ -1,6 +1,6 @@
 - page_heading h(@domain.name)
 
-- if @last_30_days_visits.present? && @last_30_days_visits.size == 30
+- if @last_30_days_visits.present? && !@last_30_days_visits.empty?
   %h3 Last 30 days
   = image_tag "http://chart.apis.google.com/chart?cht=lc&chd=t:#{@last_30_days_visits.join(',')}&chs=700x150&chl=#{@first_day.strftime("%d.%m.%y")}|#{@last_day.strftime("%d.%m.%y")}&chco=FFCC33&chma=20,20,20,20|80,20&chdl=Visits&chg=20,50,1,5&chds=0,#{@last_30_days_visits.max}&chxt=y&chxr=0,0,#{@last_30_days_visits.max},1&chls=4.0,3.0,0.0"
 

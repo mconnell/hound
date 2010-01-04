@@ -17,8 +17,9 @@ ActionController::Routing::Routes.draw do |map|
                       :namespace => "domains/",
                       :requirements => { :domain_id => %r([^/;,?]+) }
 
-    domain.resources  :analytics,
+    domain.resource   :analytics,
                       :namespace => "domains/",
+                      :only      => [:show, :edit, :update],
                       :requirements => { :domain_id => %r([^/;,?]+) }
   end
 
