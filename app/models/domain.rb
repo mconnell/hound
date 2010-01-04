@@ -76,6 +76,8 @@ class Domain < ActiveRecord::Base
     update_attributes!(:ga_tracking_code => ga_tracking_code)
     google_analytics_reports.destroy_all
     send_later(:build_google_analytics_profile)
+
+    Event.create(:object => self, :object_action => 'update_ga_tracking_code')
   end
 
   private

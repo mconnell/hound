@@ -1,0 +1,6 @@
+.event
+  .message
+    The Google analytics tracking code '#{h(domain.ga_tracking_code)}'
+    was added to the domain #{link_to h(domain.name), domain_path(h domain.name)}
+  .additional
+    about #{time_ago_in_words event.created_at} ago
